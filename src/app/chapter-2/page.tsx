@@ -26,7 +26,8 @@ export default function Chapter2({ searchParams }: SearchParamProps) {
   const [imageSrc, setImageSrc] = useState('');
   const [imageAlt, setImageAlt] = useState('');
   const router = useRouter();
-  const [showImage, setShowImage] = useState(true);
+  const [lng, setLng] = useState(-117.120830);
+  const [lat, setLat] = useState(32.760840);
 
   useEffect(() => {
     setImageSrc('/chapter-2/germany.jpg');
@@ -37,14 +38,14 @@ export default function Chapter2({ searchParams }: SearchParamProps) {
     router.push('/map');
   }
 
-  const handleOpenImage = () => {
-    setShowImage(!showImage);
+  const handleGetLngLat = (lng: number, lat: number) => {
+    console.log(lng, lat);
   }
 
   return (
     <>
       <div className="">
-        <Map />
+        <Map getLngLat={handleGetLngLat} lng={lng} lat={lat} />
         <div className="chapter-2-actions flex justify-between p-4">
           <Link href="/chapter-2?show=true">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
