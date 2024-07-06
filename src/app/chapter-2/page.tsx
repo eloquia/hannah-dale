@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Map from '@/components/map/map';
 import Link from 'next/link';
@@ -15,8 +14,22 @@ const data = [
     imageAlt: 'Brandenburg Gate',
     lng: 13.377775,
     lat: 52.516266,
+
+  },
+  {
+    id: 1,
+    imageSrc: '/chapter-2/balboa-nights.jpg',
+    imageAlt: 'Balboa Nights',
+    lng: 13.377775,
+    lat: 52.516266,
+    errorThresholdMeters: 1000,
   },
 ];
+
+const defaultOptions = {
+  shouldPreventDefault: true,
+  delay: 500,
+};
 
 type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
