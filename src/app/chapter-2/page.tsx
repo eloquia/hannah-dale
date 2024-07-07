@@ -14,7 +14,7 @@ const data = [
     imageAlt: 'Brandenburg Gate',
     lng: 13.377775,
     lat: 52.516266,
-
+    errorThresholdMeters: 1000, 
   },
   {
     id: 1,
