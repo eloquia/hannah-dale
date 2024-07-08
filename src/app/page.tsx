@@ -3,7 +3,7 @@
 import { Love_Light } from 'next/font/google'
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/navigation';
-import { AnimatePresence, motion, useDragControls } from "framer-motion";
+import { AnimatePresence, PanInfo, motion, useAnimationControls, useDragControls } from "framer-motion";
 
 const loveLight = Love_Light({
   subsets: ['latin'],
@@ -25,14 +25,26 @@ export default function Home() {
   const router = useRouter();
   const [displayedBackgroundImageIdx, setDisplayedBackgroundImageIdx] = useState<number>(0);
   const constraintsRef = useRef(null)
-  const controls = useDragControls()
+  const dragControls = useDragControls()
+  const animationControls = useAnimationControls()
   const globeRef = useRef<SVGSVGElement | null>(null);
   const planeRef = useRef<HTMLDivElement | null>(null);
   const [planeRect, setPlaneRect] = useState<DOMRect>({} as DOMRect);
   const [globeRect, setGlobeRect] = useState<DOMRect>({} as DOMRect);
+  const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
     getPosition();
+    animationControls.start({
+      opacity: 1,
+      y: 20,
+      transition: {
+        duration: 0.5,
+      },
+    }, {
+      delay: 0.5,
+      ease: "easeInOut",
+    })
     setGlobeRect(globeRef.current?.getBoundingClientRect() as DOMRect);
     setPlaneRect(planeRef.current?.getBoundingClientRect() as DOMRect);
   }, []);
@@ -43,9 +55,10 @@ export default function Home() {
 
   useEffect(() => {
     // figure out if plane and globe are overlapped
-    console.log('plane', planeRect, 'globe', globeRect);
 
     if (!planeRect || !globeRect) return;
+
+
 
     if (
       planeRect.x < globeRect.x + globeRect.width &&
@@ -53,7 +66,6 @@ export default function Home() {
       planeRect.y < globeRect.y + globeRect.height &&
       planeRect.y + planeRect.height > globeRect.y
     ) {
-      console.log('overlapped');
       router.push('/chapter-1');
     }
   }, [planeRect]);
@@ -66,6 +78,22 @@ export default function Home() {
 
   const handleMouseUp = () => {
     getPosition();
+  }
+
+  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    // convert cartesian x, y coordinates to degrees
+
+    const { x, y } = info.offset;
+    const { width, height } = planeRect;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
+
+    animationControls.set({
+      rotate: angle
+    })
+    // setRotation(angle);
+    // console.log(angle);
   }
 
   return (
@@ -92,16 +120,14 @@ export default function Home() {
               ref={planeRef}
               className='w-7 h-7'
               drag
+              onDrag={handleDrag}
               dragConstraints={constraintsRef}
               dragMomentum={false}
-              dragControls={controls}
+              dragControls={dragControls}
               whileDrag={{ scale: 1.1 }}
               whileHover={{ scale: 1.1 }}
-              whileTap={{ boxShadow: "0px 0px 15px rgba(0,0,0,0.2)" }}
               draggable={true}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ ease: "easeInOut", delay: 2.5 }}
+              animate={animationControls}
               onMouseUp={handleMouseUp}
             >
               <svg
