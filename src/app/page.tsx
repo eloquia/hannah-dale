@@ -4,6 +4,11 @@ import { Love_Light } from 'next/font/google'
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, PanInfo, motion, useAnimationControls, useDragControls } from "framer-motion";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+gsap.registerPlugin(useGSAP, MotionPathPlugin);
 
 const loveLight = Love_Light({
   subsets: ['latin'],
@@ -21,6 +26,8 @@ const DISPLAYED_IMAGES = [
   // "/landing/landing-2.jpg",
 ]
 
+const planeInitialTransition = { duration: 4, ease: "easeInOut" };
+
 export default function Home() {
   const router = useRouter();
   const [displayedBackgroundImageIdx, setDisplayedBackgroundImageIdx] = useState<number>(0);
@@ -34,24 +41,41 @@ export default function Home() {
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    getPosition();
-    animationControls.start({
-      opacity: 1,
-      y: 20,
-      transition: {
-        duration: 0.5,
-      },
-    }, {
-      delay: 0.5,
-      ease: "easeInOut",
-    })
+    window.addEventListener("resize", updatePosition);
+    // updatePosition();
+
+    // animationControls.start({
+    //   opacity: 1,
+    //   // y: 20,
+    //   transition: planeInitialTransition,
+    // }, {
+    //   // delay: 2.5,
+    //   ease: "easeInOut",
+    // });
+
     setGlobeRect(globeRef.current?.getBoundingClientRect() as DOMRect);
     setPlaneRect(planeRef.current?.getBoundingClientRect() as DOMRect);
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("resize", getPosition);
-  }, []);
+  useGSAP(() => {
+    gsap.to(planeRef.current, {
+      duration: 4,
+      ease: "easeInOut",
+      delay: 1.75,
+      opacity: 1,
+      motionPath: {
+        path: "#heart-path",
+        align: "#heart-path",
+        autoRotate: true,
+        // alignOrigin: [0.5, 0.5]
+      },
+      onComplete: () => {
+        animationControls.start({
+          opacity: 1,
+        });
+      },
+    });
+  });
 
   useEffect(() => {
     // figure out if plane and globe are overlapped
@@ -70,43 +94,38 @@ export default function Home() {
     }
   }, [planeRect]);
 
-  const getPosition = () => {
+  const updatePosition = () => {
     const rect = planeRef.current?.getBoundingClientRect();
-
     setPlaneRect(rect as DOMRect);
   };
 
   const handleMouseUp = () => {
-    getPosition();
+    updatePosition();
   }
 
-  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    // convert cartesian x, y coordinates to degrees
+  // const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  //   // convert cartesian x, y coordinates to degrees
 
-    const { x, y } = info.offset;
-    const { width, height } = planeRect;
-    const centerX = width / 2;
-    const centerY = height / 2;
-    const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
+  //   const { x, y } = info.offset;
+  //   const { width, height } = planeRect;
+  //   const centerX = width / 2;
+  //   const centerY = height / 2;
+  //   const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
 
-    animationControls.set({
-      rotate: angle
-    })
-    // setRotation(angle);
-    // console.log(angle);
-  }
+  //   animationControls.set({
+  //     rotate: angle
+  //   })
+  // }
 
   return (
     <AnimatePresence>
       <motion.main
         key="landing-page"
         ref={constraintsRef}
-        // onPointerDown={() => startDrag}
-        // onClick={handleNextBackgroundImage}
-        initial={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
         exit={{ opacity: 0, x:100 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.2 }}
       >
         <div
           className="hero min-h-screen min-w-screen"
@@ -115,36 +134,52 @@ export default function Home() {
           }}
         >
           <div className="hero-overlay bg-opacity-10 z-10">
-            <motion.div
-              key="landing-plane"
-              ref={planeRef}
-              className='w-7 h-7'
-              drag
-              onDrag={handleDrag}
-              dragConstraints={constraintsRef}
-              dragMomentum={false}
-              dragControls={dragControls}
-              whileDrag={{ scale: 1.1 }}
-              whileHover={{ scale: 1.1 }}
-              draggable={true}
-              animate={animationControls}
-              onMouseUp={handleMouseUp}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6 text-[#0d0d0a]"
-              >
-                <path
+            <div className="relative flex items-center justify-center h-screen">
+              <svg xmlns="http://www.w3.org/2000/svg" height="50vh" width="50vw" viewBox="0 0 200 200">
+                <motion.path
+                  id="heart-path"
+                  d="M100,60 Q100,0 150,0 T200,60 Q200,100 150,140 T100,200 Q100,180 50,140 T0,60 Q0,0 50,0 T100,60 Z"
+                  fill="transparent"
+                  strokeWidth="0"
+                  stroke="rgba(255, 255, 255, 0.69)"
                   strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={planeInitialTransition}
                 />
               </svg>
-            </motion.div>
+              <motion.div
+                // id="landing-plane"
+                key="landing-plane"
+                ref={planeRef}
+                className='absolute'
+                drag
+                // onDrag={handleDrag}
+                dragConstraints={constraintsRef}
+                dragMomentum={false}
+                // dragControls={dragControls}
+                // whileDrag={{ scale: 1.1 }}
+                // whileHover={{ scale: 1.1 }}
+                initial={{ opacity: 0 }}
+                animate={animationControls}
+                onMouseUp={handleMouseUp}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6 text-[#0d0d0a]"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                  />
+                </svg>
+              </motion.div>
+            </div>
           </div>
           <div className="hero-content text-neutral-content">
             <div className="max-w-md">
@@ -273,37 +308,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          {/* <Draggable
-            nodeRef={nodeRef}
-            axis="x"
-            handle=".handle"
-            bounds="body"
-            onDrag={handleDrag}
-            onStart={handleStart}
-            // onDrag={thandleDrag}
-          >
-            <div ref={nodeRef}>
-              <motion.svg
-                key="landing-plane"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ ease: "easeInOut", delay: 2.5 }}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6 text-[#0d0d0a]"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                />
-              </motion.svg>
-            </div>
-          </Draggable> */}
         </div>
       </motion.main>
     </AnimatePresence>

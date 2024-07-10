@@ -13,6 +13,33 @@ const Y_INDICES = 4;
 
 const PLACE_HOLDER_IMAGE = "/chapter-1/test/placeholder.png";
 
+const test = [
+  {
+    id: 0,
+    text: "Once upon a time...",
+  },
+  {
+    id: 1,
+    text: "The universe brought two people together in Denver in 2019.",
+  },
+  {
+    id: 2,
+    text: "However, fate forced them apart soon after.",
+  },
+  {
+    id: 3,
+    text: "Soon after, they both found themselves in San Diego in 2021",
+  },
+  {
+    id: 4,
+    text: "and they became friends and then roommates.",
+  },
+  {
+    id: 5,
+    text: "Let's see what they looked like",
+  },
+]
+
 export default function First() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [imageSrcs, setImageSrcs] = useState<string[]>([]);
@@ -30,7 +57,7 @@ export default function First() {
     }
 
     imageArray.pop();
-    imageArray.push('');;
+    imageArray.push('');
 
     const randomSort = shuffle(imageArray, X_INDICES);
     setIsInitialized(true);
