@@ -8,11 +8,12 @@ import { HEX_BRIGHT_TEAL } from '@/utils/constants';
 
 export type MapProps = {
   getLngLat: (lng: number, lat: number) => void;
-  lng: number;
-  lat: number;
+  initialLng: number;
+  initialLat: number;
+  // radius: number;
 }
 
-export default function Map(props: MapProps) {
+export default function MapGame(props: MapProps) {
   const mapContainer = useRef(null);
   const map = useRef<maptilersdk.Map | null>(null);
   const [zoom] = useState(9);
@@ -42,9 +43,11 @@ export default function Map(props: MapProps) {
       draggable: true,
       
     })
-      .setLngLat([props.lng, props.lat])
+      .setLngLat([props.initialLng, props.initialLat])
       .addTo(map.current)
       .on('dragend', onDragEnd);
+
+    // draw a circle
   }, []);
 
   return (

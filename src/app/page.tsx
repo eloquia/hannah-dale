@@ -82,7 +82,7 @@ export default function Home() {
 
     if (!planeRect || !globeRect) return;
 
-
+    console.log({ planeRect, globeRect });
 
     if (
       planeRect.x < globeRect.x + globeRect.width &&
@@ -96,26 +96,23 @@ export default function Home() {
 
   const updatePosition = () => {
     const rect = planeRef.current?.getBoundingClientRect();
+    console.log('updatePosition', rect);
     setPlaneRect(rect as DOMRect);
   };
 
-  const handleMouseUp = () => {
-    updatePosition();
+  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    // convert cartesian x, y coordinates to degrees
+
+    const { x, y } = info.offset;
+    const { width, height } = planeRect;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
+
+    animationControls.set({
+      rotate: angle
+    })
   }
-
-  // const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-  //   // convert cartesian x, y coordinates to degrees
-
-  //   const { x, y } = info.offset;
-  //   const { width, height } = planeRect;
-  //   const centerX = width / 2;
-  //   const centerY = height / 2;
-  //   const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
-
-  //   animationControls.set({
-  //     rotate: angle
-  //   })
-  // }
 
   return (
     <AnimatePresence>
@@ -154,15 +151,15 @@ export default function Home() {
                 ref={planeRef}
                 className='absolute'
                 drag
-                // onDrag={handleDrag}
+                onDrag={handleDrag}
                 dragConstraints={constraintsRef}
                 dragMomentum={false}
-                // dragControls={dragControls}
+                dragControls={dragControls}
                 // whileDrag={{ scale: 1.1 }}
                 // whileHover={{ scale: 1.1 }}
                 initial={{ opacity: 0 }}
                 animate={animationControls}
-                onMouseUp={handleMouseUp}
+                onDragEnd={updatePosition}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
