@@ -6,7 +6,7 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import './map.css';
 import { HEX_BRIGHT_TEAL } from '@/constants/colors';
 
-export type MapProps = {
+type MapProps = {
   getLngLat: (lng: number, lat: number) => void;
   initialLng: number;
   initialLat: number;
