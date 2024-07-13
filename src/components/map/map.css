@@ -11,30 +11,7 @@
   height: 100%;
 }
 
-/* Zoom Controls */
-.ol-zoom {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  display: flex;
-  flex-direction: column;
-}
-.ol-zoom-in {
-  padding: 5px 10px;
-  background-color: aliceblue;
-  border-bottom: 1px solid #ccc;
-}
-.ol-zoom-out {
-  padding: 5px 10px;
-  background-color: aliceblue;
-}
-
-.ol-scale-line-inner {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #f0f8ff66;
-  border-bottom: #111 1px solid;
-  border-right: #111 1px solid;
-  border-left: #111 1px solid;
+/* MapTiler */
+.maplibregl-ctrl {
+  display: hidden !important;
 }

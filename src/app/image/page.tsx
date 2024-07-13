@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import randomQuery from "@/utils/queries";
 
-export type ModalProps = {
+type ModalProps = {
   imageSrc: string;
   imageAlt: string;
 };
