@@ -18,7 +18,7 @@ export default function MapGame(props: MapProps) {
   const map = useRef<maptilersdk.Map | null>(null);
   const [zoom] = useState(9);
 
-  maptilersdk.config.apiKey = '7TXsrGyKHwP0PiuVOrbt';
+  maptilersdk.config.apiKey = process.env.MAPTILER_KEY!;
 
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
