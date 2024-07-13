@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import './map.css';
-import { HEX_BRIGHT_TEAL } from '@/utils/constants';
+import { HEX_BRIGHT_TEAL } from '@/constants/colors';
 
 export type MapProps = {
   getLngLat: (lng: number, lat: number) => void;
@@ -25,7 +25,7 @@ export default function MapGame(props: MapProps) {
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current!,
-      style: "dataviz",
+      style: maptilersdk.MapStyle.STREETS,
       center: [-117.120830, 32.760840], // starting position [lng, lat]
       zoom: zoom, // starting zoom
     });

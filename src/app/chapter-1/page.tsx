@@ -76,7 +76,7 @@ export default function First() {
         initial={{ opacity: 0, x: 1000 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.7 }}
       >
         <AnimatedText
           text={text[currentTextIndex]}
