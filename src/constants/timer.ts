@@ -1,0 +1,1 @@
+export const TYPEWRITE_DELAY_MILLIS = 70;
