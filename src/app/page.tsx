@@ -96,7 +96,7 @@ export default function Home() {
 
   const updatePosition = () => {
     const rect = planeRef.current?.getBoundingClientRect();
-    console.log('updatePosition', rect);
+    // console.log('updatePosition', rect);
     setPlaneRect(rect as DOMRect);
   };
 
