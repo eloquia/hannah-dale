@@ -14,11 +14,12 @@ type MapProps = {
 }
 
 export default function MapGame(props: MapProps) {
+  const { initialLng, initialLat, getLngLat } = props;
   const mapContainer = useRef(null);
   const map = useRef<maptilersdk.Map | null>(null);
   const [zoom] = useState(9);
 
-  maptilersdk.config.apiKey = process.env.MAPTILER_KEY!;
+  maptilersdk.config.apiKey = process.env.NEXT_PUBLIC_MAPTILER_KEY!;
 
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
@@ -34,7 +35,7 @@ export default function MapGame(props: MapProps) {
       const lngLat = marker.getLngLat();
       // console.log('Longitude: ' + lngLat.lng + ' | Latitude: ' + lngLat.lat);
 
-      props.getLngLat(lngLat.lng, lngLat.lat);
+      getLngLat(lngLat.lng, lngLat.lat);
     }
 
     // create a marker
@@ -43,12 +44,12 @@ export default function MapGame(props: MapProps) {
       draggable: true,
       
     })
-      .setLngLat([props.initialLng, props.initialLat])
+      .setLngLat([initialLng, initialLat])
       .addTo(map.current)
       .on('dragend', onDragEnd);
 
     // draw a circle
-  }, []);
+  }, [initialLat, initialLng, getLngLat]);
 
   return (
     <div className="map-wrap">

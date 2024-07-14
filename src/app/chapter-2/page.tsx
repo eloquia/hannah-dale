@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MapGame from '@/components/map/map';
 import Link from 'next/link';
-import Modal from '../image/page';
 import getDistance from 'geolib/es/getDistance';
 import { showToast } from '@/components/toast/show-toast';
 import { randomBadGuessText } from '@/utils/bad-guess';
 import { randomGoodGuessText } from '@/utils/good-guess';
 import { MapGameImage } from '@/models/map.models';
 import { BALBOA_NIGHTS, BELMONT_PARK, CANCUN, CARLSBAD, COACHELLA, DECORAH, DENVER, ENSENADA, FLOWER_FIELDS, GETTY, GRIFFITH_OBSERVATORY, IOWA_STATE_FAIR, JOSHUA_TREE, LA_JOLLA_SWING, MADRID, MISSION_BEACH, PILATES, SALZBURG, SANTA_BARBARA, TORREY_PINES, UNIVERSAL_STUDIOS, WIEN } from '@/utils/map.constants';
+import ImageClueModal from '@/components/image.modal';
 
 const text = [
   "After they learned they had much in common",
@@ -56,7 +56,11 @@ type SearchParamProps = {
   searchParams: Record<string, string> | null | undefined;
 };
 
-export default function Chapter2({ searchParams }: SearchParamProps) {
+export default function Chapter2({
+  searchParams
+}: {
+  searchParams: Record<string, string> | null | undefined;
+}) {
   const show = searchParams?.show;
   const [imageSrc, setImageSrc] = useState('');
   const [imageAlt, setImageAlt] = useState('');
@@ -120,8 +124,7 @@ export default function Chapter2({ searchParams }: SearchParamProps) {
         </div>
       </div>
 
-      {show && <Modal imageSrc={imageSrc} imageAlt={imageAlt} />}
-
+      {show && <ImageClueModal imageSrc={imageSrc} imageAlt={imageAlt} />}
     </>
   )
 }

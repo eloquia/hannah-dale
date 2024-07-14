@@ -1,23 +1,20 @@
-import Link from "next/link";
-import Image from 'next/image';
-import randomQuery from "@/utils/queries";
+import Image from "next/image";
 
-type ModalProps = {
+function ImageClue({ title, imageSrc, imageAlt, onClose }: {
+  onClose: () => void;
+  title: string;
   imageSrc: string;
   imageAlt: string;
-};
-
-function Modal(props: ModalProps) {
-
+}) {
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
       <div className="p-8 border w-96 shadow-lg rounded-md bg-white">
         <div className="text-center">
-          <h3 className="text-2xl font-bold text-gray-900">{randomQuery()}</h3>
+          <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
           <div className="mt-2 px-7 py-3">
             <Image
-              src={props.imageSrc}
-              alt={props.imageAlt}
+              src={imageSrc}
+              alt={imageAlt}
               style={{
                 width: '100%',
                 height: 'auto',
@@ -28,15 +25,12 @@ function Modal(props: ModalProps) {
             />
           </div>
           <div className="flex justify-center mt-4">
-
-            {/* Navigates back to the base URL - closing the modal */}
-            <Link
-              href="/chapter-2"
+            <button
               className="px-4 py-2 bg-[#01F9C6] text-gray-900 text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              onClick={onClose}
             >
               Close
-            </Link>
-
+            </button>
           </div>
         </div>
       </div>
@@ -44,4 +38,4 @@ function Modal(props: ModalProps) {
   );
 }
 
-export default Modal
+export default ImageClue;

@@ -16,6 +16,7 @@ export type SliderGameProps = {
 }
 
 export default function SliderGame(props: SliderGameProps) {
+  const { imagePrefix, imageExtension, numCols, numRows, imageHeight, imageWidth, onCompleted } = props;
   const [isInitialized, setIsInitialized] = useState(false);
   const [imageSrcs, setImageSrcs] = useState<string[]>([]);
   const [completed, setCompleted] = useState(false);
@@ -23,9 +24,9 @@ export default function SliderGame(props: SliderGameProps) {
   useEffect(() => {
     const imageArray = [];
 
-    for (let y = 0; y < props.numRows; y++) {
-      for (let x = 0; x < props.numCols; x++) {
-        const imageSrc = `${props.imagePrefix}-${x}-${y}.${props.imageExtension}`;
+    for (let y = 0; y < numRows; y++) {
+      for (let x = 0; x < numCols; x++) {
+        const imageSrc = `${imagePrefix}-${x}-${y}.${imageExtension}`;
         imageArray.push(imageSrc);
       }
     }
@@ -33,32 +34,32 @@ export default function SliderGame(props: SliderGameProps) {
     imageArray.pop();
     imageArray.push('');
 
-    const randomSort = shuffle(imageArray, props.numCols);
+    const randomSort = shuffle(imageArray, numCols);
     setIsInitialized(true);
     setImageSrcs(randomSort);
-  }, []);
+  }, [imageExtension, imagePrefix, numCols, numRows]);
 
   useEffect(() => {
     if (isInitialized) {
-      const c = isCompleted(imageSrcs, props.numCols);
+      const c = isCompleted(imageSrcs, numCols);
       if (c) {
         setCompleted(true);
       } 
     }
-  }, [imageSrcs]);
+  }, [imageSrcs, isInitialized, numCols]);
 
   useEffect(() => {
     if (completed) {
-      props.onCompleted();
+      onCompleted();
     }
-  }, [completed]);
+  }, [completed, onCompleted]);
 
   const handleClick = (idx: number) => {
     if (completed) {
       return;
     }
     const imageSrcsCopy = [...imageSrcs];
-    const updated = switchCells(imageSrcsCopy, props.numCols, idx);
+    const updated = switchCells(imageSrcsCopy, numCols, idx);
     setImageSrcs(updated);
   };
 
@@ -84,7 +85,7 @@ export default function SliderGame(props: SliderGameProps) {
             <Image
               key={`image-${idx}`}
               src={imageSrc}
-              alt=""
+              alt="TBD"
               width={props.imageWidth}
               height={props.imageHeight}
               onClick={() => handleClick(idx)}

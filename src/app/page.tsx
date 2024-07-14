@@ -92,7 +92,7 @@ export default function Home() {
     ) {
       router.push('/chapter-1');
     }
-  }, [planeRect]);
+  }, [planeRect, globeRect, router]);
 
   const updatePosition = () => {
     const rect = planeRef.current?.getBoundingClientRect();
