@@ -8,7 +8,7 @@ const texts = [
   "Will you marry me?",
 ]
 
-export const BELMONT_PARK: MapGameImage = {
+const BELMONT_PARK: MapGameImage = {
   imageSrc: belmontPark,
   imageAlt: 'Belmont Park',
   lng: -117.251754,
@@ -17,7 +17,7 @@ export const BELMONT_PARK: MapGameImage = {
   clue: 'Belmont Park',
 };
 
-export const FLOWER_FIELDS: MapGameImage = {
+const FLOWER_FIELDS: MapGameImage = {
   imageSrc: flowerFields,
   imageAlt: 'Flower Fields',
   lng: -117.318151,
