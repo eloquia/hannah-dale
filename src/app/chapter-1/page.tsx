@@ -17,7 +17,7 @@ const text = [
   "Once upon a time...",
   "The universe brought two people together in Denver.",
   "Only to force them apart soon after.",
-  "Regardless, they both found themselves in San Diego",
+  "Regardless, they both found each other in San Diego",
   "and they became friends",
   "Let's see what they looked like!",
 ];
@@ -26,7 +26,7 @@ export default function First() {
   const router = useRouter();
   const [completed, setCompleted] = useState(false);
 
-  const [currentTextIndex, setCurrentTextIndex] = useState(4);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState<string>('');
   const [canAdvance, setCanAdvance] = useState(false);
 
@@ -75,7 +75,6 @@ export default function First() {
           ? <main className="p-4 flex min-h-screen flex-col items-center gap-4">
               <p className="mb-8 text-xl text-center">Complete the Image to Unlock the Memory!</p>
               <SliderGame
-                // imagePrefix="/chapter-1/test/germany"
                 imagePrefix="/chapter-1/game/kearny-villa"
                 imageExtension="png"
                 numCols={X_INDICES}
