@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import randomQuery from "@/utils/queries";
 
 type ImageModalProps = {
-  imageSrc: string
+  imageSrc: StaticImageData
   imageAlt: string
 }
 

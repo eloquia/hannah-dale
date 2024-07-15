@@ -6,16 +6,19 @@ import MapGame from '@/components/map/map';
 import Link from 'next/link';
 import getDistance from 'geolib/es/getDistance';
 import { showToast } from '@/components/toast/show-toast';
-import { randomBadGuessText } from '@/utils/bad-guess';
 import { randomGoodGuessText } from '@/utils/good-guess';
 import { MapGameImage } from '@/models/map.models';
-import { BALBOA_NIGHTS, BELMONT_PARK, CANCUN, CARLSBAD, COACHELLA, DECORAH, DENVER, ENSENADA, FLOWER_FIELDS, GETTY, GRIFFITH_OBSERVATORY, IOWA_STATE_FAIR, JOSHUA_TREE, LA_JOLLA_SWING, MADRID, MISSION_BEACH, PILATES, SALZBURG, SANTA_BARBARA, TORREY_PINES, UNIVERSAL_STUDIOS, WIEN } from '@/utils/map.constants';
+import { BALBOA_NIGHTS, CANCUN, CARLSBAD, COACHELLA, DECORAH, DENVER, ENSENADA, GETTY, GRIFFITH_OBSERVATORY, IOWA_STATE_FAIR, JOSHUA_TREE, LA_JOLLA_SWING, MADRID, MISSION_BEACH, PILATES, SALZBURG, SANTA_BARBARA, TORREY_PINES, UNIVERSAL_STUDIOS, WIEN } from '@/utils/map.constants';
 import ImageClueModal from '@/components/image.modal';
+import { StaticImageData } from 'next/image';
+
+import placeholderImage from '../../../public/next.svg';
 
 const text = [
   "After they learned they had much in common",
   "It was only fate they found themselves",
   "falling for each other",
+  "Let's discover their journey"
 ]
 
 const otherText = [
@@ -28,7 +31,6 @@ const data: MapGameImage[] = [
   TORREY_PINES,
   ENSENADA,
   CARLSBAD,
-  BELMONT_PARK,
   COACHELLA,
   UNIVERSAL_STUDIOS,
   GRIFFITH_OBSERVATORY,
@@ -44,7 +46,6 @@ const data: MapGameImage[] = [
   DECORAH,
   LA_JOLLA_SWING,
   JOSHUA_TREE,
-  FLOWER_FIELDS,
 ];
 
 const defaultOptions = {
@@ -62,7 +63,7 @@ export default function Chapter2({
   searchParams: Record<string, string> | null | undefined;
 }) {
   const show = searchParams?.show;
-  const [imageSrc, setImageSrc] = useState('');
+  const [imageSrc, setImageSrc] = useState<StaticImageData>(placeholderImage);
   const [imageAlt, setImageAlt] = useState('');
   const router = useRouter();
   const [initialLng, setLng] = useState(-117.120830);
@@ -82,14 +83,19 @@ export default function Chapter2({
   }
 
   const handleGuess = () => {
+    const datum = data[memoryIdx];
+    console.log(datum)
+    console.log(guessLng, guessLat, datum.lng, datum.lat)
     const distanceInMeters = getDistance(
       { latitude: guessLat, longitude: guessLng },
       { latitude: data[memoryIdx].lat, longitude: data[memoryIdx].lng },
       data[memoryIdx].errorThresholdMeters,
     );
 
+    console.log(distanceInMeters)
+
     // compare guess lng and guess lat with data lng and lat
-    if (distanceInMeters === 0) {
+    if (distanceInMeters < data[memoryIdx].errorThresholdMeters) {
       showToast('success', randomGoodGuessText());
       if (memoryIdx === data.length - 1) {
         router.push('/chapter-3');
@@ -98,7 +104,9 @@ export default function Chapter2({
         router.push('/chapter-2?show=true');
       }
     } else {
-      showToast('warning', randomBadGuessText());
+      const actualDistance = distanceInMeters
+      const expectedDistance = data[memoryIdx].errorThresholdMeters
+      showToast('warning', `You need to be within ${expectedDistance} meters raidus but you were ${distanceInMeters} meters away`);
     }
   }
 

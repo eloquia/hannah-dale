@@ -5,6 +5,9 @@ const texts = [
   "Will you marry me?",
 ]
 
+import { BELMONT_PARK } from '@/utils/map.constants';
+import { FLOWER_FIELDS } from '@/utils/map.constants';
+
 export default function Chapter3() {
   return (
     <div>

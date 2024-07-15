@@ -22,9 +22,9 @@ export const SANTA_BARBARA: MapGameImage = {
 export const TORREY_PINES: MapGameImage = {
   imageSrc: '/chapter-2/torrey-pines.jpg',
   imageAlt: 'Torrey Pines',
-  lng: -117.255609,
-  lat: 32.918689,
-  errorThresholdMeters: 1000,
+  lng: -117.259454,
+  lat: 32.925258,
+  errorThresholdMeters: 1500,
   clue: 'Torrey Pines',
 };
 export const ENSENADA: MapGameImage = {
@@ -40,7 +40,7 @@ export const CARLSBAD: MapGameImage = {
   imageAlt: 'Carlsbad',
   lng: -117.348768,
   lat: 33.159341,
-  errorThresholdMeters: 2000,
+  errorThresholdMeters: 3000,
   clue: 'Carlsbad',
 };
 export const BELMONT_PARK: MapGameImage = {
@@ -56,7 +56,7 @@ export const COACHELLA: MapGameImage = {
   imageAlt: 'Coachella',
   lng: -116.246035,
   lat: 33.679378,
-  errorThresholdMeters: 1000,
+  errorThresholdMeters: 10000,
   clue: 'Coachella',
 };
 export const UNIVERSAL_STUDIOS: MapGameImage = {
@@ -64,7 +64,7 @@ export const UNIVERSAL_STUDIOS: MapGameImage = {
   imageAlt: 'Universal Studios',
   lng: -118.353280,
   lat: 34.137786,
-  errorThresholdMeters: 1000,
+  errorThresholdMeters: 5000,
   clue: 'Universal Studios',
 };
 export const GRIFFITH_OBSERVATORY: MapGameImage = {
@@ -72,13 +72,13 @@ export const GRIFFITH_OBSERVATORY: MapGameImage = {
   imageAlt: 'Griffith Observatory',
   lng: -118.300392,
   lat: 34.118435,
-  errorThresholdMeters: 100,
+  errorThresholdMeters: 2000,
   clue: 'Griffith Observatory',
 };
 export const IOWA_STATE_FAIR: MapGameImage = {
   imageSrc: '/chapter-2/iowa-state-fair.jpeg',
   imageAlt: 'Iowa State Fair',
-  lng: 41.597433,
+  lng: -93.553262,
   lat: 41.597433,
   errorThresholdMeters: 300,
   clue: 'Iowa State Fair',
@@ -88,15 +88,15 @@ export const PILATES: MapGameImage = {
   imageAlt: 'Pilates',
   lng: -117.152412,
   lat: 32.768940,
-  errorThresholdMeters: 50,
+  errorThresholdMeters: 100,
   clue: 'Pilates',
 };
 export const SALZBURG: MapGameImage = {
   imageSrc: '/chapter-2/salzburg.jpeg',
   imageAlt: 'Salzburg',
-  lng: 13.025127,
-  lat: 47.812149,
-  errorThresholdMeters: 1000,
+  lng: 13.0263306,
+  lat: 47.8019550,
+  errorThresholdMeters: 3000,
   clue: 'Salzburg',
 };
 export const WIEN: MapGameImage = {
@@ -120,15 +120,15 @@ export const CANCUN: MapGameImage = {
   imageAlt: 'Cancun',
   lng: -86.818384,
   lat: 21.274930,
-  errorThresholdMeters: 100,
+  errorThresholdMeters: 1500,
   clue: 'Cancun',
 };
 export const GETTY: MapGameImage = {
   imageSrc: '/chapter-2/getty.png',
   imageAlt: 'Getty',
-  lng: -118.473008,
-  lat: 34.076501,
-  errorThresholdMeters: 100,
+  lng: -118.4738000,
+  lat: 	34.0766972,
+  errorThresholdMeters: 1000,
   clue: 'Getty',
 };
 export const DENVER: MapGameImage = {
@@ -166,9 +166,9 @@ export const LA_JOLLA_SWING: MapGameImage = {
 export const JOSHUA_TREE: MapGameImage = {
   imageSrc: '/chapter-2/joshua-tree.jpeg',
   imageAlt: 'Joshua Tree',
-  lng: -116.079854,
-  lat: 33.976652,
-  errorThresholdMeters: 10000,
+  lng: -116.1868050,
+  lat: 34.0326694,
+  errorThresholdMeters: 20000,
   clue: 'Joshua Tree',
 };
 export const FLOWER_FIELDS: MapGameImage = {

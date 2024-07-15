@@ -1,5 +1,7 @@
+import { StaticImageData } from "next/image";
+
 export type MapGameImage = {
-  imageSrc: string;
+  imageSrc: StaticImageData;
   imageAlt: string;
   lng: number;
   lat: number;
