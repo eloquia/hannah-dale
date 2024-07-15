@@ -8,6 +8,8 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
+import backgroundImage from '../../public/landing/landing-4.jpg';
+
 gsap.registerPlugin(useGSAP, MotionPathPlugin);
 
 const loveLight = Love_Light({
@@ -21,9 +23,7 @@ const OCEAN_STEEL = "#838461";
 const OCEAN_STEEL_DARKER = "#0d0d0a";
 
 const DISPLAYED_IMAGES = [
-  "/landing/landing-4.jpg",
-  // "/landing/landing-3.jpg",
-  // "/landing/landing-2.jpg",
+  "/landing/landing-4.jpg"
 ]
 
 const planeInitialTransition = { duration: 4, ease: "easeInOut" };
@@ -82,7 +82,7 @@ export default function Home() {
 
     if (!planeRect || !globeRect) return;
 
-    console.log({ planeRect, globeRect });
+    // console.log({ planeRect, globeRect });
 
     if (
       planeRect.x < globeRect.x + globeRect.width &&
@@ -127,7 +127,7 @@ export default function Home() {
         <div
           className="hero min-h-screen min-w-screen"
           style={{
-            backgroundImage: `url(${DISPLAYED_IMAGES[displayedBackgroundImageIdx]})`,
+            backgroundImage: `url(${backgroundImage.src})`
           }}
         >
           <div className="hero-overlay bg-opacity-10 z-10">

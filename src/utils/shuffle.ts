@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 const SHUFFLE_STEPS = 100;
 
 export const isInTopRow = (idx: number, numColumns: number): boolean => {
@@ -19,8 +21,11 @@ export const isInBottomRow = (totalItems: number, idx: number, numColumns: numbe
   return idx >= lastRowLowerBound && idx < lastRowUpperBound;
 };
 
-export const findPossibleMoves = (array: string[], numColumns: number) => {
-  const nullIdx = array.indexOf('');
+export const findPossibleMoves = (array: { src: StaticImageData | null; alt: string }[], numColumns: number) => {
+  const nullIdx = array.indexOf({
+    src: null,
+    alt: "",
+  });
   const possibleMoves = [];
 
   const aboveIdx = nullIdx - numColumns;
@@ -45,56 +50,47 @@ export const findPossibleMoves = (array: string[], numColumns: number) => {
   return possibleMoves;
 }
 
-export const isCompleted = (array: string[], numColumns: number) => {
-  return array.map((content, idx) => {
-    if (idx === array.length - 1 && !content) {
-      return true;
-    } else {
-      // actual from file
-      const filePath = content.split('.')[0];
-      const filePathContents = filePath.split('-');
-      const x = parseInt(filePathContents[filePathContents.length - 2]);
-      const y = parseInt(filePathContents[filePathContents.length - 1]);
-
-      // expected from idx
-      const floor = Math.floor(idx / numColumns);
-      const what = idx % numColumns
-
-      const actualEqualsExpected = y === Math.floor(idx / numColumns) && x === idx % numColumns;
-      return actualEqualsExpected;
+export const isCompleted = (array: { src: StaticImageData | null, alt: string }[]): boolean => {
+  for (let i = 0; i < array.length; i++) {
+    if (parseInt(array[i].alt) + 1 !== i) {
+      return false;
     }
-  }).filter(item => !item).length === 0;
+  }
+  return true;
 }
 
-const switchCell = (array: string[], idx: number, emptyIdx: number) => {
+const switchCell = (array: { src: StaticImageData | null, alt: string }[], idx: number, emptyIdx: number) => {
   const arrayCopy = [...array];
   arrayCopy[emptyIdx] = array[idx];
-  arrayCopy[idx] = '';
+  arrayCopy[idx] = {
+    src: null,
+    alt: "",
+  };
   return arrayCopy;
 }
 
-export const switchCells = (array: string[], numColumns: number, idx: number): string[] => {
+export const switchCells = (array: { src: StaticImageData | null, alt: string }[], numColumns: number, idx: number): { src: StaticImageData | null, alt: string }[] => {
   // cases where to switch
-  if (idx - numColumns >= 0 && array[idx - numColumns] === '') {
+  if (idx - numColumns >= 0 && !array[idx - numColumns].src) {
     return switchCell(array, idx, idx - numColumns);
   }
 
-  if (idx - 1 >= 0 && array[idx - 1] === '') {
+  if (idx - 1 >= 0 && !array[idx - 1].src) {
     return switchCell(array, idx, idx - 1);
   }
 
-  if (idx + 1 < array.length && array[idx + 1] === '') {
+  if (idx + 1 < array.length && !array[idx + 1].src) {
     return switchCell(array, idx, idx + 1);
   }
 
-  if (idx + numColumns < array.length && array[idx + numColumns] === '') {
+  if (idx + numColumns < array.length && !array[idx + numColumns].src) {
     return switchCell(array, idx, idx + numColumns);
   }
 
   return array;
 }
 
-const shuffle = (array: string[], numColumns: number): string[] => {
+const shuffle = (array: { src: StaticImageData | null, alt: string }[], numColumns: number): { src: StaticImageData | null, alt: string }[] => {
   let arrayCopy = [...array];
 
   for (let i = 0; i < SHUFFLE_STEPS; i++) {

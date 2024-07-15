@@ -35,24 +35,23 @@ export default function First() {
 
   const [ showGame, setShowGame ] = useState(false);
 
-  useEffect(() => {
-    // add germany-x-y.png images randomly to the array
-    const imageArray = [];
+  // useEffect(() => {
+  //   const imageArray = [];
 
-    for (let y = 0; y < Y_INDICES; y++) {
-      for (let x = 0; x < X_INDICES; x++) {
-        const imageSrc = `/chapter-1/game/kearny-villa-${x}-${y}.png`;
-        imageArray.push(imageSrc);
-      }
-    }
+  //   for (let y = 0; y < Y_INDICES; y++) {
+  //     for (let x = 0; x < X_INDICES; x++) {
+  //       const imageSrc = `/chapter-1/game/kearny-villa-${x}-${y}.png`;
+  //       imageArray.push(imageSrc);
+  //     }
+  //   }
 
-    imageArray.pop();
-    imageArray.push('');
+  //   imageArray.pop();
+  //   imageArray.push('');
 
-    const randomSort = shuffle(imageArray, X_INDICES);
-    setIsInitialized(true);
-    setImageSrcs(randomSort);
-  }, []);
+  //   const randomSort = shuffle(imageArray, X_INDICES);
+  //   setIsInitialized(true);
+  //   setImageSrcs(randomSort);
+  // }, []);
 
   useEffect(() => {
     setCanAdvance(false);
