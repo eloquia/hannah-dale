@@ -1,6 +1,6 @@
 import { MapGameImage } from '@/models/map.models';
-import belmontPark from '../../../public/chapter-3/belmont-park.jpg'
-import flowerFields from '../../../public/chapter-3/flower-fields.jpg'
+import belmontPark from '../../../public/chapter-3/belmont-park.jpeg'
+import flowerFields from '../../../public/chapter-3/flower-fields.jpeg'
 
 const texts = [
   "I know I asked you in the past many times.",
