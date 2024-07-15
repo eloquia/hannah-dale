@@ -72,8 +72,8 @@ export default function First() {
     <AnimatePresence>
       {
         showGame
-          ? <main className="p-4 flex min-h-screen flex-col items-center gap-4">
-              <p className="mb-8 text-xl text-center">Complete the Image to Unlock the Memory!</p>
+          ? <main className="p-4 flex h-screen flex-col items-center gap-4">
+              <p className="mb-2 text-xl text-center">Complete the Image to Unlock the Memory!</p>
               <SliderGame
                 imagePrefix="/chapter-1/game/kearny-villa"
                 imageExtension="png"
@@ -84,7 +84,7 @@ export default function First() {
                 onCompleted={handleCompleted}
               />
               {
-                completed && <div className="text-center mt-8">
+                completed && <div className="text-center mt-2">
                   <button
                     className="px-4 py-2 bg-[#01F9C6] text-gray-900 text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
                     onClick={handleNavigate}

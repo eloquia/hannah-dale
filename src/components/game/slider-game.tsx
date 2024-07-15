@@ -126,7 +126,7 @@ export default function SliderGame(props: SliderGameProps) {
   }
 
   return (
-    <div className="inline-grid grid-cols-3 gap-0">
+    <div className="inline-grid grid-cols-3 gap-0 h-3/4">
       {
         Array.from(Array.from(Array(imageSrcs.length).keys()).keys()).map(idx => {
           const imageSrc = imageSrcs[idx]
