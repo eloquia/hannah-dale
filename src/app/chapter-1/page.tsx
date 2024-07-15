@@ -18,7 +18,7 @@ const text = [
   "Once upon a time...",
   "The universe brought two people together in Denver.",
   "However, fate forced them apart soon after.",
-  "Soon after, they both found themselves in San Diego",
+  "Regardless, they both found themselves in San Diego",
   "and they became friends",
   "Let's see what they looked like!",
 ];
@@ -29,29 +29,11 @@ export default function First() {
   const [imageSrcs, setImageSrcs] = useState<string[]>([]);
   const [completed, setCompleted] = useState(false);
 
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentTextIndex, setCurrentTextIndex] = useState(4);
   const [displayedText, setDisplayedText] = useState<string>('');
   const [canAdvance, setCanAdvance] = useState(false);
 
   const [ showGame, setShowGame ] = useState(false);
-
-  // useEffect(() => {
-  //   const imageArray = [];
-
-  //   for (let y = 0; y < Y_INDICES; y++) {
-  //     for (let x = 0; x < X_INDICES; x++) {
-  //       const imageSrc = `/chapter-1/game/kearny-villa-${x}-${y}.png`;
-  //       imageArray.push(imageSrc);
-  //     }
-  //   }
-
-  //   imageArray.pop();
-  //   imageArray.push('');
-
-  //   const randomSort = shuffle(imageArray, X_INDICES);
-  //   setIsInitialized(true);
-  //   setImageSrcs(randomSort);
-  // }, []);
 
   useEffect(() => {
     setCanAdvance(false);

@@ -1,3 +1,4 @@
+import exp from "constants";
 import { StaticImageData } from "next/image";
 
 const SHUFFLE_STEPS = 100;
@@ -51,12 +52,34 @@ export const findPossibleMoves = (array: { src: StaticImageData | null; alt: str
 }
 
 export const isCompleted = (array: { src: StaticImageData | null, alt: string }[]): boolean => {
-  for (let i = 0; i < array.length; i++) {
-    if (parseInt(array[i].alt) + 1 !== i) {
-      return false;
-    }
+  // TODO: come up with more general solution and not hard-coded solution
+  if (array[0].alt !== "1") {
+    return false;
+  } else if (array[1].alt !== "5") {
+    return false;
+  } else if (array[2].alt !== "9") {
+    return false;
+  } else if (array[3].alt !== "2") {
+    return false;
+  } else if (array[4].alt !== "6") {
+    return false;
+  } else if (array[5].alt !== "10") {
+    return false;
+  } else if (array[6].alt !== "3") {
+    return false;
+  } else if (array[7].alt !== "7") {
+    return false;
+  } else if (array[8].alt !== "11") {
+    return false;
+  } else if (array[9].alt !== "4") {
+    return false;
+  } else if (array[10].alt !== "8") {
+    return false;
+  // } else if (array[11].alt !== "12") {
+  //   return false;
+  } else {
+    return true;
   }
-  return true;
 }
 
 const switchCell = (array: { src: StaticImageData | null, alt: string }[], idx: number, emptyIdx: number) => {

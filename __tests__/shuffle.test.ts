@@ -378,7 +378,11 @@ describe('shuffle', () => {
 
   describe('switchCells', () => {
     describe('2x2', () => {
-      const array = ['image-0-0.png', 'image-0-1.png', 'image-0-2.png', ''];
+      const array = [
+        { src: 'image-0-0.png', alt: "1" },
+        { src: 'image-0-1.png', alt: "2" },
+        { src: 'image-0-2.png', alt: '3' }
+      ];
       
       it('should switchCells with the second item', () => {
         const shuffled = switchCells(array, 2, 1);

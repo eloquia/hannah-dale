@@ -93,22 +93,21 @@ export default function SliderGame(props: SliderGameProps) {
     });
 
     const randomSort = shuffle(imageArray, numCols);
-    // setIsInitialized(true);
+    setIsInitialized(true);
     setImageSrcs(randomSort);
   }, [imageExtension, imagePrefix, numCols, numRows]);
 
   useEffect(() => {
-    // if (isInitialized) {
+    if (isInitialized) {
       const c = isCompleted(imageSrcs);
       if (c) {
         setCompleted(true);
       } 
-    // }
+    }
   }, [imageSrcs, isInitialized, numCols]);
 
   useEffect(() => {
     if (completed) {
-      console.log("completed");
       onCompleted();
     }
   }, [completed, onCompleted]);
