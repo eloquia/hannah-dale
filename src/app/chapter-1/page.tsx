@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import shuffle from "@/utils/shuffle";
 import SliderGame from "@/components/game/slider-game";
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from "framer-motion";
@@ -17,7 +16,7 @@ const Y_INDICES = 4;
 const text = [
   "Once upon a time...",
   "The universe brought two people together in Denver.",
-  "However, fate forced them apart soon after.",
+  "Only to force them apart soon after.",
   "Regardless, they both found themselves in San Diego",
   "and they became friends",
   "Let's see what they looked like!",
@@ -25,8 +24,6 @@ const text = [
 
 export default function First() {
   const router = useRouter();
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [imageSrcs, setImageSrcs] = useState<string[]>([]);
   const [completed, setCompleted] = useState(false);
 
   const [currentTextIndex, setCurrentTextIndex] = useState(4);
