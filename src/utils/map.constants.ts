@@ -1,10 +1,31 @@
 import { MapGameImage } from "@/models/map.models";
+import balboaNights from '../../public/chapter-2/balboa-nights.jpg'
+import santaBarbara from '../../public/chapter-2/santa-barbara.jpg'
+import torreyPines from '../../public/chapter-2/torrey-pines.jpg'
+import ensenada from '../../public/chapter-2/ensenada.jpg'
+import carlsbad from '../../public/chapter-2/carlsbad.jpg'
+import coacchella from '../../public/chapter-2/coacchella.jpg'
+import universalStudios from '../../public/chapter-2/universal-studios.jpg'
+import griffithObservatory from '../../public/chapter-2/griffith-observatory.jpg'
+import iowaStateFair from '../../public/chapter-2/iowa-state-fair.jpg'
+import pilates from '../../public/chapter-2/pilates.jpg'
+import salzburg from '../../public/chapter-2/salzburg.jpg'
+import wien from '../../public/chapter-2/wien.jpg'
+import madrid from '../../public/chapter-2/madrid.jpg'
+import cancun from '../../public/chapter-2/cancun.jpg'
+import getty from '../../public/chapter-2/getty.jpg'
+import denver from '../../public/chapter-2/denver.jpg'
+import missionBeach from '../../public/chapter-2/mission-beach.jpg'
+import decorah from '../../public/chapter-2/decorah.jpg'
+import laJollaSwing from '../../public/chapter-2/la-jolla-swing.jpg'
+import joshuaTree from '../../public/chapter-2/joshua-tree.jpg'
+import flowerFields from '../../public/chapter-3/flower-fields.jpg'
 
 export const RADIUS_OF_ERROR = 0;
 
 // Map Game
 export const BALBOA_NIGHTS: MapGameImage = {
-  imageSrc: '/chapter-2/balboa-nights.jpg',
+  imageSrc: balboaNights,
   imageAlt: 'Balboa Nights',
   lng: -117.151532,
   lat: 32.731822,
@@ -12,7 +33,7 @@ export const BALBOA_NIGHTS: MapGameImage = {
   clue: 'Balboa Nights',
 }
 export const SANTA_BARBARA: MapGameImage = {
-  imageSrc: '/chapter-2/santa-barbara.jpg',
+  imageSrc: santaBarbara,
   imageAlt: 'Santa Barbara',
   lng: -119.700720,
   lat: 34.420230,
@@ -20,7 +41,7 @@ export const SANTA_BARBARA: MapGameImage = {
   clue: 'Santa Barbara',
 };
 export const TORREY_PINES: MapGameImage = {
-  imageSrc: '/chapter-2/torrey-pines.jpg',
+  imageSrc: torreyPines,
   imageAlt: 'Torrey Pines',
   lng: -117.259454,
   lat: 32.925258,
@@ -28,7 +49,7 @@ export const TORREY_PINES: MapGameImage = {
   clue: 'Torrey Pines',
 };
 export const ENSENADA: MapGameImage = {
-  imageSrc: '/chapter-2/ensenada.jpeg',
+  imageSrc: ensenada,
   imageAlt: 'Ensenada',
   lng: -116.656659,
   lat: 31.863149,
@@ -36,23 +57,15 @@ export const ENSENADA: MapGameImage = {
   clue: 'Ensenada',
 };
 export const CARLSBAD: MapGameImage = {
-  imageSrc: '/chapter-2/carlsbad.jpeg',
+  imageSrc: carlsbad,
   imageAlt: 'Carlsbad',
   lng: -117.348768,
   lat: 33.159341,
   errorThresholdMeters: 3000,
   clue: 'Carlsbad',
 };
-export const BELMONT_PARK: MapGameImage = {
-  imageSrc: '/chapter-2/belmont-park.jpeg',
-  imageAlt: 'Belmont Park',
-  lng: -117.251754,
-  lat: 32.771363,
-  errorThresholdMeters: 1000,
-  clue: 'Belmont Park',
-};
 export const COACHELLA: MapGameImage = {
-  imageSrc: '/chapter-2/coachella.jpeg',
+  imageSrc: coacchella,
   imageAlt: 'Coachella',
   lng: -116.246035,
   lat: 33.679378,
@@ -60,7 +73,7 @@ export const COACHELLA: MapGameImage = {
   clue: 'Coachella',
 };
 export const UNIVERSAL_STUDIOS: MapGameImage = {
-  imageSrc: '/chapter-2/universal-studios.jpeg',
+  imageSrc: universalStudios,
   imageAlt: 'Universal Studios',
   lng: -118.353280,
   lat: 34.137786,
@@ -68,7 +81,7 @@ export const UNIVERSAL_STUDIOS: MapGameImage = {
   clue: 'Universal Studios',
 };
 export const GRIFFITH_OBSERVATORY: MapGameImage = {
-  imageSrc: '/chapter-2/griffith-observatory.jpeg',
+  imageSrc: griffithObservatory,
   imageAlt: 'Griffith Observatory',
   lng: -118.300392,
   lat: 34.118435,
@@ -76,7 +89,7 @@ export const GRIFFITH_OBSERVATORY: MapGameImage = {
   clue: 'Griffith Observatory',
 };
 export const IOWA_STATE_FAIR: MapGameImage = {
-  imageSrc: '/chapter-2/iowa-state-fair.jpeg',
+  imageSrc: iowaStateFair,
   imageAlt: 'Iowa State Fair',
   lng: -93.553262,
   lat: 41.597433,
@@ -84,7 +97,7 @@ export const IOWA_STATE_FAIR: MapGameImage = {
   clue: 'Iowa State Fair',
 };
 export const PILATES: MapGameImage = {
-  imageSrc: '/chapter-2/pilates.jpeg',
+  imageSrc: pilates,
   imageAlt: 'Pilates',
   lng: -117.152412,
   lat: 32.768940,
@@ -92,7 +105,7 @@ export const PILATES: MapGameImage = {
   clue: 'Pilates',
 };
 export const SALZBURG: MapGameImage = {
-  imageSrc: '/chapter-2/salzburg.jpeg',
+  imageSrc: salzburg,
   imageAlt: 'Salzburg',
   lng: 13.0263306,
   lat: 47.8019550,
@@ -100,7 +113,7 @@ export const SALZBURG: MapGameImage = {
   clue: 'Salzburg',
 };
 export const WIEN: MapGameImage = {
-  imageSrc: '/chapter-2/wien.jpeg',
+  imageSrc: wien,
   imageAlt: 'Wien',
   lng: 16.377753,
   lat: 48.208593,
@@ -108,7 +121,7 @@ export const WIEN: MapGameImage = {
   clue: 'Wien',
 };
 export const MADRID: MapGameImage = {
-  imageSrc: '/chapter-2/madrid.png',
+  imageSrc: madrid,
   imageAlt: 'Madrid',
   lng: -3.7010750,
   lat: 40.4146050,
@@ -116,7 +129,7 @@ export const MADRID: MapGameImage = {
   clue: 'Madrid',
 };
 export const CANCUN: MapGameImage = {
-  imageSrc: '/chapter-2/cancun.jpeg',
+  imageSrc: cancun,
   imageAlt: 'Cancun',
   lng: -86.818384,
   lat: 21.274930,
@@ -124,7 +137,7 @@ export const CANCUN: MapGameImage = {
   clue: 'Cancun',
 };
 export const GETTY: MapGameImage = {
-  imageSrc: '/chapter-2/getty.png',
+  imageSrc: getty,
   imageAlt: 'Getty',
   lng: -118.4738000,
   lat: 	34.0766972,
@@ -132,7 +145,7 @@ export const GETTY: MapGameImage = {
   clue: 'Getty',
 };
 export const DENVER: MapGameImage = {
-  imageSrc: '/chapter-2/denver.jpeg',
+  imageSrc: denver,
   imageAlt: 'Denver',
   lng: -105.015147,
   lat: 39.740212,
@@ -140,7 +153,7 @@ export const DENVER: MapGameImage = {
   clue: 'Denver',
 };
 export const MISSION_BEACH: MapGameImage = {  
-  imageSrc: '/chapter-2/mission-beach.jpeg',
+  imageSrc: missionBeach,
   imageAlt: 'Mission Beach',
   lng: -117.2532500,
   lat: 32.7615967,
@@ -148,7 +161,7 @@ export const MISSION_BEACH: MapGameImage = {
   clue: 'Mission Beach',
 };
 export const DECORAH: MapGameImage = {
-  imageSrc: '/chapter-2/decorah.jpeg',
+  imageSrc: decorah,
   imageAlt: 'Decorah',
   lng: -91.7956783,
   lat: 43.2898250,
@@ -156,7 +169,7 @@ export const DECORAH: MapGameImage = {
   clue: 'Decorah',
 };
 export const LA_JOLLA_SWING: MapGameImage = {
-  imageSrc: '/chapter-2/la-jolla-swing.png',
+  imageSrc: laJollaSwing,
   imageAlt: 'La Jolla Swing',
   lng: -117.247958,
   lat: 32.864789,
@@ -164,18 +177,10 @@ export const LA_JOLLA_SWING: MapGameImage = {
   clue: 'La Jolla Swing',
 };
 export const JOSHUA_TREE: MapGameImage = {
-  imageSrc: '/chapter-2/joshua-tree.jpeg',
+  imageSrc: joshuaTree,
   imageAlt: 'Joshua Tree',
   lng: -116.1868050,
   lat: 34.0326694,
   errorThresholdMeters: 20000,
   clue: 'Joshua Tree',
-};
-export const FLOWER_FIELDS: MapGameImage = {
-  imageSrc: '/chapter-2/flower-fields.jpeg',
-  imageAlt: 'Flower Fields',
-  lng: -117.318151,
-  lat: 33.123835,
-  errorThresholdMeters: 1000,
-  clue: 'Flower Fields',
 };
